@@ -15,8 +15,8 @@ class m161108_115741_create_table_chat extends Migration
         $this->createTable('{{%chat}}', [
 
             'id' => $this->primaryKey()->unsigned()->notNull(),
-            'receiver' => $this->integer(11)->unsigned()->notNull(),
-            'sender' => $this->integer(11)->unsigned()->notNull(),
+            'receiver' => $this->integer(11)->notNull(),
+            'sender' => $this->integer(11)->notNull(),
             'message' => $this->text()->notNull(),
             'status' => $this->integer()->notNull()->defaultValue(1)->comment("0 => Deleted, 1 => Active"),
             'created_at' => $this->datetime()->notNull(),
