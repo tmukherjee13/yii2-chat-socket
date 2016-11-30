@@ -9,7 +9,8 @@
         "email": "tmukherjee13@gmail.com"
     }],
     "require": {
-        "yiisoft/yii2": "*"
+        "yiisoft/yii2": "*",
+        "cboden/ratchet": "^0.3.5"
     },
     "autoload": {
         "psr-4": {
@@ -21,6 +22,6 @@
     },
     "repositories": [{
         "type": "git",
-        "url": "https://github.com/tmukherjee13/yii2-socket-socket.git"
+        "url": "https://github.com/tmukherjee13/yii2-socket-chat.git"
     }]
 }
