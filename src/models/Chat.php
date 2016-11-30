@@ -11,14 +11,14 @@ use yii\db\Expression;
  * This is the model class for table "{{%chat}}".
  *
  * @property integer $id
- * @property integer $to_user
- * @property integer $from_user
+ * @property integer $receiver
+ * @property integer $sender
  * @property string $message
  * @property integer $status
  * @property string $created_at
  *
- * @property User $fromUser
- * @property User $toUser
+ * @property User $sender
+ * @property User $receiver
  */
 class Chat extends \yii\db\ActiveRecord
 {
@@ -64,14 +64,14 @@ class Chat extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['to_user', 'from_user', 'message'], 'required'],
-            [['to_user', 'from_user', 'status'], 'integer'],
+            [['receiver', 'sender', 'message'], 'required'],
+            [['receiver', 'sender', 'status'], 'integer'],
             [['message'], 'string'],
             [['created_at'], 'safe'],
             [['status'], 'default', 'value' => self::STATUS_ENABLED],
             [['message'], 'filter', 'filter' => '\yii\helpers\HtmlPurifier::process'],
-            [['from_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['from_user' => 'id']],
-            [['to_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['to_user' => 'id']],
+            [['sender'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['sender' => 'id']],
+            [['receiver'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['receiver' => 'id']],
         ];
     }
 
@@ -82,8 +82,8 @@ class Chat extends \yii\db\ActiveRecord
     {
         return [
             'id'         => Yii::t('app', 'ID'),
-            'to_user'    => Yii::t('app', 'To User'),
-            'from_user'  => Yii::t('app', 'From User'),
+            'receiver'    => Yii::t('app', 'To User'),
+            'sender'  => Yii::t('app', 'From User'),
             'message'    => Yii::t('app', 'Message'),
             'status'     => Yii::t('app', 'Status'),
             'created_at' => Yii::t('app', 'Created At'),
@@ -93,16 +93,16 @@ class Chat extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getFromUser()
+    public function getSender()
     {
-        return $this->hasOne(User::className(), ['id' => 'from_user']);
+        return $this->hasOne(User::className(), ['id' => 'sender']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getToUser()
+    public function getReceiver()
     {
-        return $this->hasOne(User::className(), ['id' => 'to_user']);
+        return $this->hasOne(User::className(), ['id' => 'receiver']);
     }
 }

@@ -40,8 +40,8 @@ class Chat implements MessageComponentInterface
 
             $return = [
                 "id"        => $msgData['id'],
-                "from_user" => $msgData['from_user'],
-                "to_user"   => $msgData['to_user'],
+                "sender" => $msgData['sender'],
+                "receiver"   => $msgData['receiver'],
                 "message"   => $msgData['message'],
                 "username"  => $msgData['username'],
                 "sent"      => strtotime($msgData['created_at']),

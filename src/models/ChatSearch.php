@@ -20,7 +20,7 @@ class ChatSearch extends Chat
     public function rules()
     {
         return [
-            [['id', 'to_user', 'from_user', 'status'], 'integer'],
+            [['id', 'receiver', 'sender', 'status'], 'integer'],
             [['message', 'created_at'], 'safe'],
         ];
     }
@@ -62,8 +62,8 @@ class ChatSearch extends Chat
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'to_user' => $this->to_user,
-            'from_user' => $this->from_user,
+            'receiver' => $this->receiver,
+            'sender' => $this->sender,
             'status' => $this->status,
             'created_at' => $this->created_at,
         ]);
@@ -77,16 +77,16 @@ class ChatSearch extends Chat
     {
 
 
-        // $id = $params['to_user'];
+        // $id = $params['receiver'];
 
-        $id = $this->to_user;
+        $id = $this->receiver;
         $query = new Query;
-        $query->select(['from_user','to_user','message','username'])
+        $query->select(['sender','receiver','message','username'])
             ->from(['c'=>Chat::tableName()])
             ->orderBy('created_at', SORT_DESC);
-            $query->leftJoin(['u' => User::tableName()], 'u.id = c.from_user');
+            $query->leftJoin(['u' => User::tableName()], 'u.id = c.sender');
 
-        // $query->join('LEFT JOIN', User::tableName(), 'wf_user.id = wf_chat.from_user');
+        // $query->join('LEFT JOIN', User::tableName(), 'wf_user.id = wf_chat.sender');
 
         // echo $query->createCommand()->rawSql;
         // die;
@@ -94,7 +94,7 @@ class ChatSearch extends Chat
         if (!$this->validate()) {
             // uncomment the following line if you do not want to return any records when validation fails
             // $query->where('0=1');
-            $query->where(['or', ['to_user' => $id], ['from_user' => $id]]);
+            $query->where(['or', ['receiver' => $id], ['sender' => $id]]);
             // return $dataProvider;
         }
 

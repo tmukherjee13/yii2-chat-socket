@@ -19,9 +19,8 @@ class ModuleBootstrap implements BootstrapInterface
         }
 
         if ($app instanceof \yii\console\Application) {
-            $app->controllerMap[$this->id] = [
+            $app->controllerMap['chat-server'] = [
                 'class' => 'tmukherjee13\sochat\console\controllers\ChatServerController',
-                'module' => $this,
             ];
         }
     }
