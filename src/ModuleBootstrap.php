@@ -17,5 +17,12 @@ class ModuleBootstrap implements BootstrapInterface
         if (file_exists($sFilePathConfig)) {
             \Yii::$app->getUrlManager()->addRules(require ($sFilePathConfig));
         }
+
+        if ($app instanceof \yii\console\Application) {
+            $app->controllerMap[$this->id] = [
+                'class' => 'tmukherjee13\sochat\console\controllers\ChatServerController',
+                'module' => $this,
+            ];
+        }
     }
 }
