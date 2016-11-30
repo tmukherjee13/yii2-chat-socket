@@ -15,8 +15,8 @@ class m161108_115741_create_table_chat extends Migration
         $this->createTable('{{%chat}}', [
 
             'id' => $this->primaryKey()->unsigned()->notNull(),
-            'to_user' => $this->integer(11)->unsigned()->notNull(),
-            'from_user' => $this->integer(11)->unsigned()->notNull(),
+            'receiver' => $this->integer(11)->unsigned()->notNull(),
+            'sender' => $this->integer(11)->unsigned()->notNull(),
             'message' => $this->text()->notNull(),
             'status' => $this->integer()->notNull()->defaultValue(1)->comment("0 => Deleted, 1 => Active"),
             'created_at' => $this->datetime()->notNull(),
@@ -25,16 +25,16 @@ class m161108_115741_create_table_chat extends Migration
  
         // creates index for column `from_user`
         $this->createIndex(
-            'fk-chat-from_user-user-id',
+            'fk-chat-sender-user-id',
             '{{%chat}}',
-            'from_user'
+            'sender'
         );
 
         // add foreign key for table `wf_user`
         $this->addForeignKey(
-            'fk-chat-from_user-user-id',
+            'fk-chat-sender-user-id',
             '{{%chat}}',
-            'from_user',
+            'sender',
             '{{%user}}',
             'id',
             'CASCADE'
@@ -42,16 +42,16 @@ class m161108_115741_create_table_chat extends Migration
 
         // creates index for column `to_user`
         $this->createIndex(
-            'fk-chat-to_user-user-id',
+            'fk-chat-receiver-user-id',
             '{{%chat}}',
-            'to_user'
+            'receiver'
         );
 
         // add foreign key for table `wf_user`
         $this->addForeignKey(
-            'fk-chat-to_user-user-id',
+            'fk-chat-receiver-user-id',
             '{{%chat}}',
-            'to_user',
+            'receiver',
             '{{%user}}',
             'id',
             'CASCADE'
@@ -65,25 +65,25 @@ class m161108_115741_create_table_chat extends Migration
     {
         // drops foreign key for table `wf_user`
         $this->dropForeignKey(
-            'fk-chat-from_user-user-id',
+            'fk-chat-sender-user-id',
             '{{%chat}}'
         );
 
         // drops index for column `from_user`
         $this->dropIndex(
-            'fk-chat-from_user-user-id',
+            'fk-chat-sender-user-id',
             '{{%chat}}'
         );
 
         // drops foreign key for table `wf_user`
         $this->dropForeignKey(
-            'fk-chat-to_user-user-id',
+            'fk-chat-receiver-user-id',
             '{{%chat}}'
         );
 
         // drops index for column `to_user`
         $this->dropIndex(
-            'fk-chat-to_user-user-id',
+            'fk-chat-receiver-user-id',
             '{{%chat}}'
         );
 
