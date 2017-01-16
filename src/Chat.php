@@ -1,12 +1,12 @@
 <?php
-namespace tmukherjee13\sochat;
+namespace tmukherjee13\chatter;
 
 use Ratchet\ConnectionInterface;
 use Ratchet\MessageComponentInterface;
 
 class Chat implements MessageComponentInterface
 {
-    use \tmukherjee13\sochat\components\Chatter;
+    use \tmukherjee13\chatter\components\Chatter;
     protected $clients;
 
     public function __construct()

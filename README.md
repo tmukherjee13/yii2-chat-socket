@@ -1,2 +1,2 @@
-# yii2-chat-socket
+# yii2-chatter
 Yii2 chat module based on php sockets

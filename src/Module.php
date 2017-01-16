@@ -1,6 +1,6 @@
 <?php
 
-namespace tmukherjee13\sochat;
+namespace tmukherjee13\chatter;
 
 /**
  * chat module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * @inheritdoc
      */
-    public $controllerNamespace = 'tmukherjee13\sochat\controllers';
+    public $controllerNamespace = 'tmukherjee13\chatter\controllers';
 
     /**
      * @inheritdoc

@@ -1,6 +1,6 @@
 <?php
 
-namespace tmukherjee13\sochat\models;
+namespace tmukherjee13\chatter\models;
 
 use common\models\User;
 use Yii;

@@ -1,6 +1,6 @@
 <?php
 
-namespace tmukherjee13\sochat;
+namespace tmukherjee13\chatter;
 
 use yii\base\Application;
 use yii\base\BootstrapInterface;
@@ -20,8 +20,11 @@ class ModuleBootstrap implements BootstrapInterface
 
         if ($app instanceof \yii\console\Application) {
             $app->controllerMap['chat-server'] = [
-                'class' => 'tmukherjee13\sochat\console\controllers\ChatServerController',
+                'class' => 'tmukherjee13\chatter\console\controllers\ChatServerController',
             ];
         }
+
+        $configFilename = \Yii::getAlias('@tmukherjee13/chatter/config/config.php');
+        \Yii::configure($this, require ($configFilename));
     }
 }

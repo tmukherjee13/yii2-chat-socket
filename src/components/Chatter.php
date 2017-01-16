@@ -1,8 +1,8 @@
 <?php
 
-namespace tmukherjee13\sochat\components;
+namespace tmukherjee13\chatter\components;
 
-use tmukherjee13\sochat\models\Chat;
+use tmukherjee13\chatter\models\Chat;
 use common\models\User;
 use yii\db\Query;
 

@@ -1,7 +1,7 @@
 <?php
-namespace tmukherjee13\sochat\console\controllers;
+namespace tmukherjee13\chatter\console\controllers;
 
-use tmukherjee13\sochat\Chat;
+use tmukherjee13\chatter\Chat;
 use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
